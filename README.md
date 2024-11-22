@@ -1,1 +1,1 @@
-# Hollow-Sample-Plugin
+# Hollow Sample Plugin
