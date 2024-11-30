@@ -2,10 +2,8 @@
     "version": "1.0.0",
     "name": "HollowSamplePlugin",
     "description": "This is a sample plugin for Hollow, that displays quotes.",
-    "main": "./index.js",
     "author": "",
     "authorUrl": "",
-    "icon": "./Assets/icon.svg",
     "defaultCard": {
         "width": 4,
         "height": 3,
