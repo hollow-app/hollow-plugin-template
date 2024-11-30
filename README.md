@@ -5,3 +5,4 @@ This repository provides a template for creating plugins for **Hollow**, a custo
 The sample plugin serves as a starting point for developers looking to extend Hollow's functionality with their own custom tools and features.
 
 Feel free to use this template as a base for building your own Hollow plugins.
+.
