@@ -2,8 +2,9 @@
     "version": "1.0.0",
     "name": "HollowSamplePlugin",
     "description": "This is a sample plugin for Hollow, that displays quotes.",
-    "author": "",
-    "authorUrl": "",
+    "author": "your name",
+    "authorUrl": "your url",
+    "DataBaseVersion": 1,
     "defaultCard": {
         "width": 4,
         "height": 3,

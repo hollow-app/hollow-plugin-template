@@ -24474,7 +24474,6 @@ __export(hollow_sample_plugin_exports, {
 module.exports = __toCommonJS(hollow_sample_plugin_exports);
 var import_react2 = __toESM(require_react());
 var import_client = __toESM(require_client());
-var import_hollow_api = require("hollow-api");
 
 // src/iComponent.tsx
 var import_react = __toESM(require_react());
@@ -24526,29 +24525,26 @@ var iComponent_default = IComponent;
 // index.ts
 var Main = class {
   // the following method is called to create a card.
-  async onCreate(card_name) {
-    const db = new import_hollow_api.DataBase("HollowSamplePlugin", 1);
-    const request = await db.putData(card_name, { name: "sample" });
-    return request;
+  async onCreate(card_name, db) {
+    const request = await db?.putData(card_name, { name: "sample" });
+    return request || false;
   }
   // the following method is called to delete a card.
-  async onDelete(card_name) {
-    const db = new import_hollow_api.DataBase("HollowSamplePlugin", 1);
-    const request = await db.deleteData(card_name);
-    return request;
+  async onDelete(card_name, db) {
+    const request = await db?.deleteData(card_name);
+    return request || false;
   }
   // the following method is called to load a card.
-  async onLoad(card_info) {
-    const db = new import_hollow_api.DataBase("HollowSamplePlugin", 1);
-    const data = await db.getData(card_info.name);
+  async onLoad(card) {
+    const data = await card.db?.getData(card.name);
     if (!data)
       return false;
-    const div = document.getElementById(card_info.containerID);
+    const div = document.getElementById(card.containerID);
     if (div) {
       const myRoot = (0, import_client.createRoot)(div);
       myRoot.render(
         import_react2.default.createElement(iComponent_default, {
-          Card: card_info,
+          Card: card,
           MyData: data
         })
       );
