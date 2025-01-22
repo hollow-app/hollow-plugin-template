@@ -1,19 +1,12 @@
 {
     "version": "1.0.0",
-    "name": "HollowSamplePlugin",
-    "description": "This is a sample plugin for Hollow, that displays quotes.",
+    "name": "SampleSveltePlugin",
+    "description": "This is a sample plugin for Hollow, made with svelte.",
     "author": "your name",
     "authorUrl": "your url",
     "DataBaseVersion": 1,
     "defaultCard": {
         "width": 4,
-        "height": 3,
-        "cardRadius": 5,
-        "cardMargin": 5,
-        "cardInnerMargin": 5,
-        "cardShade": 10,
-        "cardOpacity": 0.8,
-        "shadow": true,
-        "glass": false
+        "height": 3
     }
 }

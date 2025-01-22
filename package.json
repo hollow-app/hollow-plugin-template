@@ -1,0 +1,22 @@
+{
+    "name": "samplesvelteplugin",
+    "version": "1.0.0",
+    "main": "index.js",
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "scripts": {
+        "dev": "node esbuild.config.mjs",
+        "build": "node esbuild.config.mjs production"
+    },
+    "devDependencies": {
+        "esbuild": "^0.24.2",
+        "esbuild-svelte": "^0.9.0",
+        "svelte": "^5.17.3",
+        "typescript": "^5.7.3"
+    },
+    "dependencies": {
+        "hollow-api": "^1.0.9"
+    }
+}
