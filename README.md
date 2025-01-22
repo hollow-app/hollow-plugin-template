@@ -1,8 +1,3 @@
-# Hollow Sample Plugin
+# Hollow Plugin Template
 
-This repository provides a template for creating plugins for **Hollow**, a customizable digital workspace app. It demonstrates how to structure a plugin, interact with the Hollow API.
-
-The sample plugin serves as a starting point for developers looking to extend Hollow's functionality with their own custom tools and features.
-
-Feel free to use this template as a base for building your own Hollow plugins.
-.
+This repository hosts a template for creating plugins for Hollow. While you can use any UI framework you prefer, it is recommended to use lightweight frameworks like **Svelte** to ensure better performance due to their small footprint and minimal resource usage.
