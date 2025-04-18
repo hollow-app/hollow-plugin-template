@@ -4,9 +4,6 @@
     "description": "This is a sample plugin for Hollow, made with svelte.",
     "author": "your name",
     "authorUrl": "your url",
-    "DataBaseVersion": 1,
-    "defaultCard": {
-        "width": 4,
-        "height": 3
-    }
+    "dbVersion": 1,
+    "icon": "party-popper",
 }
