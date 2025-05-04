@@ -1,7 +1,7 @@
 {
     "version": "1.0.0",
-    "name": "SampleSveltePlugin",
-    "description": "This is a sample plugin for Hollow, made with svelte.",
+    "name": "SimpleHollowPlugin",
+    "description": "This is a sample plugin for Hollow, made with solidJS.",
     "author": "your name",
     "authorUrl": "your url",
     "dbVersion": 1,
