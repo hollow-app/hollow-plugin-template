@@ -2,13 +2,22 @@
     "compilerOptions": {
         "target": "ESNext",
         "module": "ESNext",
+	"jsxImportSource": "solid-js",
         "moduleResolution": "node",
         "lib": ["DOM", "ESNext"],
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
         "strict": true,
-        "noUncheckedIndexedAccess": true,
+        "jsx": "preserve",
         "resolveJsonModule": true,
-        "skipLibCheck": true
-    }
+        "skipLibCheck": true,
+	"isolatedModules": true,
+	"baseUrl": "./src",
+	"paths": {
+            "@components/*": ["components/*"],
+	    "@type/*": ["types/*"]
+        }
+
+    },
+    "include": ["src/**/*"]
 }

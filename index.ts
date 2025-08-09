@@ -1,61 +1,61 @@
 import { IPlugin, ICard, DataBase, HollowEvent } from "hollow-api";
-import { mount, unmount } from "svelte";
-import App from "./src/App.svelte";
+import { createRoot } from "solid-js";
+import { render } from "solid-js/web";
+import App from "./src/App";
+import { DataType } from "./src/types/DataType"
 
-export type Data = {
-    name: string;
-    color: string;
-    emoji: string;
-};
 
 export default class Main implements IPlugin {
-    private roots: Record<string, any> = {};
-    private db: DataBase;
+	private roots: Map<string, () => void> = new Map();
+	private db: DataBase;
 
-    constructor(db: DataBase) {
-        this.db = db;
-    }
+	constructor(db: DataBase) {
+		this.db = db;
+	}
 
-    public async onCreate(cardName: string): Promise<boolean> {
-        const initialData: Data = {
-            name: "Example",
-            color: "#FFFFFF",
-            emoji: "🪐",
-        };
-        const requestState = await this.db.putData(cardName, initialData);
-        return !!requestState;
-    }
+	public async onCreate(cardName: string): Promise<boolean> {
+		const initialData: DataType = {
+			name: "Example",
+			color: "#FFFFFF",
+			emoji: "🪐",
+		};
+		const request = await this.db.putData(cardName, initialData);
+		return request;
+	}
 
-    public async onDelete(cardName: string): Promise<boolean> {
-        const requestState = await this.db.deleteData(cardName);
-        return !!requestState;
-    }
+	public async onDelete(cardName: string): Promise<boolean> {
+		const request = await this.db.deleteData(cardName);
+		return request;
+	}
 
-    public async onLoad(card: ICard, app: HollowEvent): Promise<boolean> {
-        const data = await this.db.getData<Data>(card.name);
+	public async onLoad(card: ICard, app: HollowEvent): Promise<boolean> {
+		const data = await this.db.getData<DataType>(card.name);
 
-        if (!data) return false;
+		if (!data) return false;
 
-        const targetElement = document.getElementById(card.containerID);
+		const targetContainer = document.getElementById(card.containerID);
 
-        if (targetElement) {
-            this.roots[card.name] = mount(App, {
-                target: targetElement,
-                props: {
-                    card,
-                    app,
-                    data,
-                    db: this.db,
-                },
-            });
-        }
+		if (targetContainer) {
+			const dispose = createRoot((dispose) => {
+				render(
+					() => App({ card, db: this.db, app, data }), targetContainer
+				);
+				return dispose;
+			});
+			this.roots.set(card.name, dispose);
+			return true
+		}
 
-        return true;
-    }
+		return false;
+	}
 
-    public onUnload(cardName: string): void {
-        if (this.roots[cardName]) {
-            unmount(this.roots[cardName]);
-        }
-    }
+	public onUnload(cardName: string): void {
+		const dispose = this.roots.get(cardName);
+		if (dispose) {
+			dispose();
+			this.roots.delete(cardName);
+		}
+	}
+
+
 }
